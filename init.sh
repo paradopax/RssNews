@@ -4,4 +4,4 @@
 export $(grep -v '^#' .env | xargs -d '\n')
 
 # execute initDB.sql file
-psql $DB_CONNECTION_URL -a -f dbFile/initDB.sql
+psql -a -f dbFile/initDB.sql
