@@ -5,9 +5,8 @@ DROP TABLE IF EXISTS Users;
 
 CREATE TABLE IF NOT EXISTS Users (
     id serial not null PRIMARY KEY, -- serail = auto increment
-    email text not null,
+    email text not null UNIQUE,
     password text,
     name text not null,
     since date not null
 );
-

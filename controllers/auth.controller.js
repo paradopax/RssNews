@@ -1,8 +1,11 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 let generateToken = (user) => {
     let payload = {
-
+        
     };
     return jwt.sign(
         payload,
@@ -15,6 +18,7 @@ let generateToken = (user) => {
 
 module.exports.register = (req, res) => {
     // return new user reg
+    res.send("ciao");
 }
 
 module.exports.login = (req, res) => {
