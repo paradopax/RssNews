@@ -14,3 +14,9 @@ module.exports.registration = Joi.object({
 
     email: Joi.string().email()
 });
+
+module.exports.login = Joi.object({
+    email: Joi.string().email(),
+    password: Joi.string()
+        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+});
