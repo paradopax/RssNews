@@ -17,9 +17,17 @@ module.exports.getDB = () => {
     throw(new Error("Database not connected"));
 };
 
-module.exports.start = async () => {
-    pool = new Pool();
-    await pool.connect();
-    pool.on('error', errorCallback);
-    console.log("Database connected");
+module.exports.connect = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            pool = new Pool();
+            await pool.connect();
+            pool.on('error', errorCallback);
+            console.log("Database connected");
+            resolve(pool);
+        }
+        catch (err) {
+            reject(err);
+        }
+    });
 }

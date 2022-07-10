@@ -1,11 +1,13 @@
 'use strict';
 
-const config = require('./config');
-const app = require('./app/app');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const PORT = process.env.PORT || 8000;
 
-config.init()
+const database = require('./database');
+const app = require('./app/app');
+
+database.connect()
     .then(data => {
         app.listen(PORT, () => {
             console.log(`Server listening on ${PORT}`);
