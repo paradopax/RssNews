@@ -1,32 +1,29 @@
 'use strict';
 
-const { Pool } = require('pg');
-// pools will use environment variables
-// for connection information
+const { Sequelize } = require('sequelize')
 
-var pool = new Pool();
+const sequelize = new Sequelize(
+    process.env.PGDATABASE,
+    process.env.PGUSER,
+    process.env.PGPASSWORD,
+    {
+        host: process.env.PGHOST,
+        port: process.env.PGPORT,
+        dialect: 'postgres',
+        logging: false
+    }
+);
 
-// the pool will emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
-let errorCallback = (err, client) => {
-    throw(new Error('Unexpected error on idle client', err));
-};
-
-module.exports.getDB = () => {
-    if (pool) return pool;
-    throw(new Error("Database not connected"));
-};
-
-module.exports.connect = () => {
+module.exports.checkConnection = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            await pool.connect();
-            pool.on('error', errorCallback);
-            console.log("Database connected");
-            resolve(pool);
+            await sequelize.authenticate();
+            await sequelize.sync();
+            resolve();
+        } catch (error) {
+            reject(error);
         }
-        catch (err) {
-            reject(err);
-        }
-    });
-}
+    });    
+};
+
+module.exports.sequelize = sequelize;

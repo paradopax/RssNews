@@ -7,8 +7,9 @@ const PORT = process.env.PORT || 8000;
 const database = require('./database');
 const app = require('./app/app');
 
-database.connect()
+database.checkConnection()
     .then(data => {
+        console.log("Database connect!")
         app.listen(PORT, () => {
             console.log(`Server listening on ${PORT}`);
         });

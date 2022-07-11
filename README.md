@@ -4,7 +4,7 @@ PostgreSQL database (12.10)
 
 ## Relations
 
-User(**id**, email, password, name, since)
+User(**id**, email, password, name, createdAt, updatedAt)
 
 Sources(**id**, link, title)
 

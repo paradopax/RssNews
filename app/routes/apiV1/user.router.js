@@ -1,7 +1,7 @@
 'use strict';
 
-const authController = require('../../controllers/auth.controller');
-const authSchema = require('./schema/auth.schema');
+const authController = require('../../controllers/user.controller');
+const authSchema = require('./schema/user.schema');
 const joiMiddleware = require('./middleware/joi.mw');
 
 const router = require('express').Router();
