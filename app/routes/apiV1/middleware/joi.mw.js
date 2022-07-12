@@ -1,8 +1,8 @@
-module.exports.validation = (schema) => {
+module.exports = (schema) => {
     return (req, res, next) => {
         let validation = schema.validate(req.body);
         if (validation.error) {
-            res.send({
+            res.status(403).json({
                 error: validation.error.details.message
             });
             return;

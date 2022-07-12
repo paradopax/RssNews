@@ -36,7 +36,6 @@ module.exports.register = async (req, res) => {
     
     try {
         let result = await userModel.create(user);
-        console.log(result);
         res.status(200).json({
             token: generateToken(result)
         });
@@ -70,4 +69,5 @@ module.exports.login = async (req, res) => {
 
 module.exports.profile = (req, res) => {
     // return profile info
+    res.status(200).json(req.user); // dummy test for middleware
 }

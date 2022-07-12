@@ -6,7 +6,7 @@ PostgreSQL database (12.10)
 
 User(**id**, email, password, name, createdAt, updatedAt)
 
-Sources(**id**, link, title)
+Sources(**id**, link, title, description, createdAt, updatedAt, UserId)
 
 FeedItem(**link**, <ins>source: Sources.id</ins>, title, date, summary, description, content)
 
