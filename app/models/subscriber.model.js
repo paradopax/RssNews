@@ -5,7 +5,7 @@ const sequelize = require('../../database').sequelize;
 
 const Subscriber = sequelize.define('Subscriber',
     {
-        Notification: {
+        notify: {
             type: DataTypes.BOOLEAN,
             defaultValue: false // push notification
         }
@@ -21,5 +21,7 @@ const sourceModel = require('./source.model');
 
 sourceModel.belongsToMany(userModel, { through: Subscriber });
 userModel.belongsToMany(sourceModel, { through: Subscriber });
+
+sequelize.sync();
 
 module.exports = Subscriber;

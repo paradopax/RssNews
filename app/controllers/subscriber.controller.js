@@ -8,6 +8,7 @@ const ERRORS = {
 
 module.exports.follow = async (req, res) => {
     // create a follow
+    
     let user = req.user;
     let source = req.joivalid;
 

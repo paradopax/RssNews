@@ -1,13 +1,22 @@
-## Database
+# Database
 
 PostgreSQL database (12.10)
 
-## Relations
+## Entity-Relationship model
 
-User(**id**, email, password, name, createdAt, updatedAt)
+![ER model](img/er_model.png "ER model")
 
-Sources(**id**, link, title, description, createdAt, updatedAt, UserId)
+## Endpoints
 
-FeedItem(**link**, <ins>source: Sources.id</ins>, title, date, summary, description, content)
+### /user
 
-Subscriber(**<ins>userID: User.id</ins>, <ins>sorceID: Sources.id</ins>**, notification)
+- register
+- login
+- profile
+
+### /source
+
+- add
+- follow
+- unfollow
+- :sourceid: TODO

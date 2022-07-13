@@ -79,8 +79,8 @@ except:
     u.login()
     print("User login")
 
+u.getProfile()
+
 url1 = "https://waitbutwhy.com/feed"
 #u.addSource(url1)
 u.follow(1)
-u.unfollow(1)
-u.unfollow(2)
