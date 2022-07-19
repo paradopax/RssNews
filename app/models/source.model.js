@@ -23,6 +23,10 @@ const Source = sequelize.define('Source',
             type: DataTypes.STRING,
             allowNull: false
         },
+        language: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     },
     {
         tableName: 'Sources'
