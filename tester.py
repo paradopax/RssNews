@@ -8,6 +8,7 @@ class User:
 
     authBaseUrl = "http://localhost:8000/v1/user/"
     sourceBaseUrl = "http://localhost:8000/v1/source/"
+    categoryBaseUrl = "http://localhost:8000/v1/usercategory/"
 
     def __init__(self, name, email, password):
         self.name       = name
@@ -45,7 +46,7 @@ class User:
     def getProfile(self):
         url = self.authBaseUrl + "profile"
         r = requests.get(url, headers=self.headers)
-        print(r.json())
+        return r.json()
 
     def addSource(self, urlToAdd):
         url = self.sourceBaseUrl +"add"
@@ -53,23 +54,58 @@ class User:
             "url": urlToAdd
         }
         r = requests.post(url, json=params, headers=self.headers)
-        print(r.text)
+        print(f"{r.status_code} add source {urlToAdd}")
+        return r.json()
 
-    def follow(self, sourceID, notif=False):
+    def follow(self, sourceID, categoryID, notif=False):
         url = self.sourceBaseUrl +"follow"
         params = {
-            "sourceId": sourceID
+            "sourceId": sourceID,
+            "categoryId": categoryID,
+            "notification": notif
         }
         r = requests.post(url, json=params, headers=self.headers)
-        print(r.text)
+        print(f"{r.status_code} follow {sourceID}")
+        return r.json()
 
-    def unfollow(self, sourceID, notif=False):
+    def unfollow(self, sourceID, categoryID, notif=False):
         url = self.sourceBaseUrl +"unfollow"
         params = {
-            "sourceId": sourceID
+            "sourceId": sourceID,
+            "categoryId": categoryID
         }
         r = requests.post(url, json=params, headers=self.headers)
-        print(r.text)
+        print(f"{r.status_code} unfollow {sourceID}")
+        return r.json()
+
+    def addCategory(self, name):
+        url = self.categoryBaseUrl
+        params = {
+            "name": name
+        }
+        r = requests.post(url, json=params, headers=self.headers)
+        print(f"{r.status_code} add category")
+        return r.json()
+    
+    def updateCategory(self, id, name):
+        url = self.categoryBaseUrl
+        params = {
+            "id": id,
+            "name": name
+        }
+        r = requests.put(url, json=params, headers=self.headers)
+        print(f"{r.status_code} update category")
+        return r.json()
+    
+    def removeCategory(self, cid):
+        url = self.categoryBaseUrl
+        params = {
+            "id": cid
+        }
+        r = requests.delete(url, json=params, headers=self.headers)
+        print(f"{r.status_code} remove category")
+        return r.json()
+
 
 u = User(name, email, password)
 try:
@@ -79,8 +115,4 @@ except:
     u.login()
     print("User login")
 
-u.getProfile()
-
 url1 = "https://waitbutwhy.com/feed"
-#u.addSource(url1)
-u.follow(1)

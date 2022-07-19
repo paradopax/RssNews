@@ -8,5 +8,6 @@ module.exports.url = Joi.object({
 
 module.exports.id = Joi.object({
     sourceId: Joi.number().required(),
+    categoryId: Joi.number().required(),
     notification: Joi.bool().default(false)
 });

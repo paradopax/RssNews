@@ -7,3 +7,6 @@ package-lock.json
 
 # dotenv environment variables file
 .env
+
+# python cache
+__pycache__/

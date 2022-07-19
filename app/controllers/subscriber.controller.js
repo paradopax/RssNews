@@ -8,14 +8,12 @@ const ERRORS = {
 
 module.exports.follow = async (req, res) => {
     // create a follow
-    
-    let user = req.user;
-    let source = req.joivalid;
+    let usercategory = req.joivalid;
 
     let add = {
-        UserId: user.id,
-        SourceId: source.sourceId,
-        notification: source.notification
+        SourceId: usercategory.sourceId,
+        UserCategoryId: usercategory.categoryId,
+        notification: usercategory.notification
     }
     
     try {
@@ -30,12 +28,11 @@ module.exports.follow = async (req, res) => {
 
 module.exports.unfollow = async (req, res) => {
     // delete a following
-    let user = req.user;
-    let source = req.joivalid;
+    let usercategory = req.joivalid;
 
     let remove = {
-        UserId: user.id,
-        SourceId: source.sourceId
+        SourceId: usercategory.sourceId,
+        UserCategoryId: usercategory.categoryId
     }
     
     try {

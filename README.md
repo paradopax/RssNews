@@ -4,7 +4,7 @@ PostgreSQL database (12.10)
 
 ## Entity-Relationship model
 
-![ER model](img/er_model.png "ER model")
+![ER model](img/er_model.jpeg "ER model")
 
 ## Endpoints
 
@@ -19,4 +19,3 @@ PostgreSQL database (12.10)
 - add
 - follow
 - unfollow
-- :sourceid: TODO

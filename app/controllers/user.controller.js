@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const SALT_LENGTH = parseInt(process.env.JWT_SALT_LENGTH);
 
-const sourceModel = require('../models/source.model');
+const userCategoryModel = require('../models/usercategory.model');
 const userModel = require('../models/user.model');
 
 const ERRORS = {
@@ -72,14 +72,16 @@ module.exports.profile = async (req, res) => {
     // return profile info
     let user = req.user;
     
-    let result = await userModel.findByPk(user.id, {
-        include: [{
-            model: sourceModel,
-            through: {
-                attributes: ["notify", "createdAt"]
-            }
-        }]
+    let result = await userCategoryModel.findAll({
+        where: {
+            UserId: user.id
+        }
     });
+    console.log(result);
+
+    let ret = {
+        category: result
+    }
     
-    res.status(200).json(result.Sources); // dummy test for middleware
+    res.status(200).json(ret); // dummy test for middleware
 }

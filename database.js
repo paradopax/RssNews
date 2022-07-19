@@ -1,6 +1,8 @@
 'use strict';
 
-const { Sequelize } = require('sequelize')
+const { Sequelize } = require('sequelize');
+
+const relationships = require('./app/models/relationships');
 
 const sequelize = new Sequelize(
     process.env.PGDATABASE,
@@ -18,6 +20,7 @@ module.exports.checkConnection = () => {
     return new Promise(async (resolve, reject) => {
         try {
             await sequelize.authenticate();
+            await relationships.init();
             await sequelize.sync();
             resolve();
         } catch (error) {

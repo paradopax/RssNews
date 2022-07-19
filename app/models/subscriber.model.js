@@ -16,12 +16,4 @@ const Subscriber = sequelize.define('Subscriber',
     }
 );
 
-const userModel = require('./user.model');
-const sourceModel = require('./source.model');
-
-sourceModel.belongsToMany(userModel, { through: Subscriber });
-userModel.belongsToMany(sourceModel, { through: Subscriber });
-
-sequelize.sync();
-
 module.exports = Subscriber;
