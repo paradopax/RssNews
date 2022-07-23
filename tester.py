@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import requests
 
 name        = "AndreaDipace"
@@ -122,4 +123,4 @@ except:
     u.login()
     print("User login")
 
-url1 = "https://waitbutwhy.com/feed"
+u.addSource(urls[2])

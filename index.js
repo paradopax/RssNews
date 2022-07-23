@@ -15,6 +15,6 @@ database.checkConnection()
         });
     })
     .catch(err => {
-        console.log(err);
+        console.err(err);
         process.exit(-1);
     });

@@ -1,5 +1,6 @@
 'use strict';
 
+const RssMagager = require('../lib/rss-manager');
 const Parser = require('rss-parser');
 
 const sourceModel = require('../models/source.model');
@@ -44,6 +45,7 @@ module.exports.add = async (req, res) => {
 
     try {
         let ret = await sourceModel.create(source);
+        RssMagager.add(url, ret.id);
         res.status(200).json(ret);
     }
     catch (err) {

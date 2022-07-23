@@ -77,7 +77,6 @@ module.exports.profile = async (req, res) => {
             UserId: user.id
         }
     });
-    console.log(result);
 
     let ret = {
         category: result

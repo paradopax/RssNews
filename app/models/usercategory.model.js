@@ -17,7 +17,6 @@ const UserCategory = sequelize.define('UserCategory',
     },
     {
         tableName: 'UserCategories',
-        indexes: [{ unique: true, fields: ['name', 'UserId'] }] // avoid userid with same category
     }
 );
 

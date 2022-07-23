@@ -24,7 +24,6 @@ module.exports.create = async (req, res) => {
         res.status(200).json(ret);
     }
     catch (err) {
-        console.log(err);
         res.status(403).json({
             error: ERRORS.create
         });
