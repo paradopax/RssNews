@@ -12,7 +12,13 @@ const UserCategory = sequelize.define('UserCategory',
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: 'compositeIndex'
+        },
+        UserId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: 'compositeIndex'
         }
     },
     {

@@ -8,6 +8,6 @@ module.exports.add = async (item) => {
         return ret;
     }
     catch (err) {
-        console.err("Something went wrong");
+        console.log("Something went wrong");
     }
 }

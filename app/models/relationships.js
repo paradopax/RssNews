@@ -5,21 +5,16 @@ module.exports.init = async () => {
     const sequelize = require('../../database').sequelize;
 
     const userModel = require('./user.model');
+    //await sequelize.sync(/*{ force: true }*/);
     const sourceModel = require('./source.model');
     const usercategoryModel = require('./usercategory.model');
     const subscriberModel = require('./subscriber.model');
     const feeditemModel = require('./feeditem.model');
 
-    await sequelize.sync(/*{ force: true }*/);
+    //await sequelize.sync(/*{ force: true }*/);
     
     // Manage
     usercategoryModel.belongsTo(userModel);
-    /*await usercategoryModel.sync();
-    
-    sequelize.getQueryInterface().addIndex('UserCategories', {
-        unique: true,
-        fields: ['name', 'UserId'] // avoid userid with same category
-    });*/
 
     // Add new
     sourceModel.belongsTo(userModel);
@@ -32,5 +27,5 @@ module.exports.init = async () => {
     feeditemModel.belongsTo(sourceModel);
 
     console.log("Relationships");
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
 }

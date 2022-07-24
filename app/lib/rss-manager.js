@@ -10,7 +10,7 @@ class RssMagager {
 
     constructor() {
         this.feeder.on('error', err => {
-            console.err(err);
+            console.log(err);
         });
     }
 
