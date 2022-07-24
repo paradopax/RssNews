@@ -1,31 +1,34 @@
 'use strict';
 
+let foreignKeyNullConstraint = {
+    foreignKey: {
+        allowNull: false
+    }
+};
+
 module.exports.init = async () => {
 
     const sequelize = require('../../database').sequelize;
 
     const userModel = require('./user.model');
-    //await sequelize.sync(/*{ force: true }*/);
     const sourceModel = require('./source.model');
     const usercategoryModel = require('./usercategory.model');
     const subscriberModel = require('./subscriber.model');
     const feeditemModel = require('./feeditem.model');
-
-    //await sequelize.sync(/*{ force: true }*/);
     
     // Manage
-    usercategoryModel.belongsTo(userModel);
+    userModel.hasMany(usercategoryModel, foreignKeyNullConstraint);
 
     // Add new
-    sourceModel.belongsTo(userModel);
+    userModel.hasMany(sourceModel, foreignKeyNullConstraint);
 
     // Follow
     sourceModel.belongsToMany(usercategoryModel, { through: subscriberModel });
     usercategoryModel.belongsToMany(sourceModel, { through: subscriberModel });
 
     // Publish
-    feeditemModel.belongsTo(sourceModel);
+    sourceModel.hasMany(feeditemModel, foreignKeyNullConstraint);
 
     console.log("Relationships");
-    await sequelize.sync();
+    await sequelize.sync(/*{ force: true }*/);
 }

@@ -9,7 +9,7 @@ class FeedItem {
         this.summary = item.summary || "";
         this.url = item.link;
         this.date = item.date || item.pubDate || item.pubdate || Date();
-        this.sourceID = sourceId;
+        this.SourceId = sourceId;
         this.content = "";
     }
   
