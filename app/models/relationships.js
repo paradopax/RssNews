@@ -30,5 +30,5 @@ module.exports.init = async () => {
     sourceModel.hasMany(feeditemModel, foreignKeyNullConstraint);
 
     console.log("Relationships");
-    await sequelize.sync(/*{ force: true }*/);
+    await sequelize.sync({ force: true });
 }

@@ -9,7 +9,7 @@ urls = [
     "https://www.giallozafferano.it/feed-www",
     "https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml",
     "https://explosm.net/rss.xml",
-    "https://waitbutwhy.com/feed",
+    #"https://waitbutwhy.com/feed",
 ]
 
 class User:
