@@ -1,0 +1,22 @@
+name: Node.js CI/CD
+ 
+on:
+  push:
+    branches: [ backend-nodejs ]
+
+jobs:  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /home/${{ secrets.USERNAME }}/RssNews
+          git pull origin backend-nodejs
+          npm install --only=prod
+          pm2 restart index.js
